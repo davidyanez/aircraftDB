@@ -2,8 +2,8 @@
 
 ## REQUIREMENTS/DEPENDENCIES:
 * Running with Docker:  Docker 
-* Running App Locally: Docker, pipenv
-* Code dependencies:  flask, waitress, python-arango, arangodb (database)
+* Running App Locally: Docker, pipenv, Python 3.7
+* system dependencies:  flask, waitress, python-arango, arangodb (database)
 
 ### Build Aircraft DB APP
 * Go to the project root path /aircraftDB
