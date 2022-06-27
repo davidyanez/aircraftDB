@@ -29,14 +29,16 @@
 * Using ArangoDB as database which supports NOSQL Document database, Graph Database and search database
 * Modules:
   * config: Contain the configuration settings
-  * controllers: Domain logic functions
+  * controllers: Handles the Domain logic functions, to be used by the endpoint handlers
   * core: Core components such as Database Connection
-  * input: input files
+  * input: input files such as Aircraft_Database-Sheet1
   * model: Definition of the model collection
   * scripts: Scripts to execute such as populate_aircraft_db
-  * test:  tests folder
+  * test:  tests folder for all the project test cases
   * aircraft_app.py:  Flask Application and Endpoints handlers
 * Needs to be easily adapted to other databases. Used abstract classed to define the connection with the database. Use of flexible arguments to allow for flexibility.
+* We used field names as in the input csv file but eliminated the "(" ")" characters
+* Populate DB import scripts assumes all expected data fields are in the correct order
 * Endoints:
   * filter_aircraft: Find aircraft items by Model, Weight Class and Tags.
-  * populate_db: Import the csv data file into the database. Populate DB import scripts assumes all expected data fields are in the correct order
+  * populate_db: Import the csv data file into the database. 
