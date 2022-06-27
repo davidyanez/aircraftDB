@@ -1,0 +1,14 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask =  ">=2.1"
+waitress = ">=2.1"
+python-arango = '>=7.3.4'
+
+[dev-packages]
+
+[requires]
+python_version = "3.7"
