@@ -1,5 +1,7 @@
 import os
 
+# App configurations
+
 config = {
     'db_config':
         {

@@ -36,7 +36,13 @@ aircraft_schema = {
 }
 
 
-def get_aircraft_collection():
+def get_create_aircraft_collection():
+    """
+    Get or create the aircraft collection
+
+    :return:
+    """
+
     collection_name = 'aircraft'
     if aircraft_db.has_collection(collection_name):
         return aircraft_db.collection(collection_name)
@@ -44,4 +50,5 @@ def get_aircraft_collection():
         return aircraft_db.create_collection(name=collection_name, schema=aircraft_schema)
 
 
-aircraft_collection = get_aircraft_collection()
+# aircraft collection object
+aircraft_collection = get_create_aircraft_collection()

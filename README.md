@@ -3,6 +3,7 @@
 ## REQUIREMENTS/DEPENDENCIES:
 * Running with Docker:  Docker 
 * Running App Locally: Docker, pipenv
+* Code dependencies:  flask, waitress, python-arango, arangodb (database)
 
 ### Build Aircraft DB APP
 * Go to the project root path /aircraftDB
@@ -36,3 +37,6 @@
   * test:  tests folder
   * aircraft_app.py:  Flask Application and Endpoints handlers
 * Needs to be easily adapted to other databases. Used abstract classed to define the connection with the database. Use of flexible arguments to allow for flexibility.
+* Endoints:
+  * filter_aircraft: Find aircraft items by Model, Weight Class and Tags.
+  * populate_db: Import the csv data file into the database. Populate DB import scripts assumes all expected data fields are in the correct order

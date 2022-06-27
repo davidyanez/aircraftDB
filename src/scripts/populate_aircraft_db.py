@@ -7,28 +7,51 @@ fieldnames = aircraft_schema_properties.keys()
 
 
 def data_hygiene(data_list):
+    """
+    Function to clean up and adapt the imported data, before saving it to the database
+    :param data_list:
+    :return:
+    """
 
     def get_property_type(_property):
+        """
+        Get the schema property type
+        :param _property:
+        :return:
+        """
         return aircraft_schema_properties.get(_property, {}).get('type')
 
     def map_undefined(value):
+        """
+        Change all the undefined values such as tbd  to undefined to avoid data inconsistency such as "tbd" in number
+        field
+        :param value:
+        :return:
+        """
         if value in ['tbd']:
             return None
         return value
 
-    def map_type(_property, value):
+    def map_type(_property, val):
+        """
+        Apply the data Property Type
+
+        :param _property:
+        :param val:
+        :return:
+        """
         _type = get_property_type(_property)
         try:
-            if (value is None):
-                return value
+            if (val is None):
+                return val
             if (_type == 'string'):
-                return value
+                return val
             elif (_type == 'number'):
-                return float(value.replace(',',''))
+                return float(val.replace(',', ''))
             elif (_type == 'boolean'):
-                return bool(value)
+                return bool(val)
             else:
-                return value
+                return val
         except Exception as e:
             logging.error(str(e) + f'for property ${_property}')
             return None;
@@ -46,6 +69,12 @@ def data_hygiene(data_list):
 
 
 def populate_aircraft_database(csv_file_path):
+    """
+    Populate the database with the Aircraft Database Sheet csv input file
+    :param csv_file_path:
+    :return:
+    """
+
     with open(csv_file_path, encoding='utf-8') as csvf:
         csv_data = csv.DictReader(csvf, fieldnames=fieldnames)
         data = data_hygiene(list(csv_data)[1:])

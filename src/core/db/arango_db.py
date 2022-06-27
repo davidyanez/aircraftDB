@@ -4,6 +4,9 @@ from core.db.db_connection import DBConnection
 
 
 class ArangoDBConnection(DBConnection):
+    """
+        This class Handles the Connection and system operations to ArangoDB
+    """
 
     def __init__(self, conf):
 
@@ -30,6 +33,10 @@ class ArangoDBConnection(DBConnection):
             raise Exception('Invalid parameters')
 
     def get_system_db(self):
+        """
+        Get the System database which is used for system operations
+        :return:
+        """
         return self.get_db(
             db_name='_system',
             user_name=self.config.get('root_user_name'),
@@ -37,6 +44,7 @@ class ArangoDBConnection(DBConnection):
 
     def has_database(self, name):
         """
+        Check if a database exists
 
         :param name: Database name
         :return: (boolean) database exists
@@ -45,6 +53,8 @@ class ArangoDBConnection(DBConnection):
 
     def create_db(self, **kwargs):
         """
+        Create a database
+
         :param kwargs:
             db_name: the database name
             user_name: The database connection user name
@@ -52,7 +62,6 @@ class ArangoDBConnection(DBConnection):
         :return: created database object
         """
 
-        sys_db = self.get_system_db()
         database_name = kwargs['db_name']
         if not self.system_db.has_database(database_name):
             return self.system_db.create_database(database_name)
