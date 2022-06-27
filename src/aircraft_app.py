@@ -11,6 +11,13 @@ filter_aircraft_fields = ['Model', 'ATCT Weight Class', 'Tags']
 
 @app.get('/filter_aircraft')
 def filter_aircraft():
+    """
+    filter_aircraft GET endpoint
+    with params  field and value
+    Supports 'Model', 'ATCT Weight Class' and, 'Tags'
+
+    :return:  Filtered items
+    """
     args = request.args
     field = args.get('field')
     value = args.get('value')
@@ -33,6 +40,11 @@ def filter_aircraft():
 
 @app.get('/populate_db')
 def populate_db():
+    """
+    Populate db endpoint:
+    note:  used GET for simplicity to call it from the browser, but ideally should be POST
+    :return: inserted items
+    """
     return jsonify({'inserted': populate_aircraft_db()});
 
 serve(app, port=8000)
